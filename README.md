@@ -29,14 +29,7 @@ The checked-in `source_data/` files are the exact tables used for the submitted 
 
 `pipeline/filter_q30_peaks.sh` filters each MACS2 narrowPeak file at column 9 >= 30, corresponding to q <= 1e-30. `pipeline/make_final_bedpe.sh` retains cis interaction clusters with iPET >= 3 and requires both anchors to overlap a q30 CTCF peak.
 
-Both scripts accept explicit input/output directories and the manifest, so they do not depend on `/public/groups/...` paths. They process only the 12 CTCF samples in this dataset.
-
 ## Raw ChIA-PET processing
 
-`pipeline/CPUpipeline_slurm_zyf.sh` is the lab's Slurm wrapper around ChIA-PET Utilities (CPU), Trim Galore, MACS2, samtools, bedtools, and UCSC utilities. It requires the CPU executable, mm10 reference FASTA/index, container image, and site-specific annotation paths. These external dependencies are not redistributed here. Before execution, copy `pipeline/config.example.sh` to a local configuration file and replace all site-specific paths.
+`pipeline/CPUpipeline_slurm.sh` is the lab's Slurm wrapper around ChIA-PET Utilities (CPU), Trim Galore, MACS2, samtools, bedtools, and UCSC utilities. It requires the CPU executable, mm10 reference FASTA/index, container image, and site-specific annotation paths. 
 
-The script is included to document the executed processing workflow; the deposited processed files and the software versions/parameters in the manuscript remain the authoritative reusable outputs.
-
-## Data and security
-
-No FASTQ files, access credentials, SSH keys, or private keys are included in this repository. In particular, do not upload the `aspsub_rsa` file from the working directory. If that key has been exposed outside the local machine, revoke and replace it before submission.
